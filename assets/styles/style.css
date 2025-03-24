@@ -1,0 +1,313 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+    --mainText: #383C3E;
+    --greyLine: #737B7D;
+    --greyLogo: #959595;
+    --buttonColor: #008F17;
+    --white: #f8f8f8;
+    --subText: #8E8E8E;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #fff;
+}
+
+li {
+    list-style-type: none;
+}
+
+input:not([type="submit"], [type="file"]) {
+    border: none;
+    outline: none;
+    border-bottom: 2px solid var(--greyLine);
+    padding: 20px 10px;
+    font-size: 18px;
+    color: var(--mainText);
+    width: 100%;
+    background: transparent;
+    margin-bottom: 20px;
+}
+
+input:not([type="submit"], [type="file"]):focus {
+    border-bottom: 3px solid var(--buttonColor);
+}
+
+input::placeholder {
+    color: var(--subText);
+    letter-spacing: 1px;
+    position: absolute;
+    left: 10px;
+    top: 30px;
+}
+
+button {
+    background-color: var(--buttonColor);
+    color: var(--white);
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    padding: 12px 20px;
+    border-radius: 6px;
+    text-align: center;
+
+    text-transform: uppercase;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    /* flex-direction: column; */
+}
+
+header {
+    padding: 20px;
+    text-align: center;
+    /* gap: 30px; */
+    height: 80px;
+    background-color: var(--white);
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+}
+
+header .logo h3 {
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+
+}
+
+header .logo h3 a {
+    color: var(--greyLogo);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+header .logo h3 a:hover {
+    color: var(--buttonColor);
+}
+
+header nav ul {
+    display: flex;
+    gap: 30px;
+
+}
+
+header nav ul li:last-child {
+    border-bottom: #008F17 3px solid;
+}
+
+header nav li {
+    cursor: pointer;
+    padding: 10px 5px;
+}
+
+header nav li:hover {
+    border-bottom: 3px solid var(--buttonColor);
+}
+
+header nav a {
+    color: var(--mainText);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.heading {
+    margin: 20px 15px;
+}
+
+.heading h1 {
+    font-size: 48px;
+    font-weight: bold;
+    color: var(--mainText);
+    margin: 30px 0;
+}
+
+.heading p {
+    font-size: 16px;
+    color: var(--mainText);
+    width: 80%;
+    color: var(--greyLine);
+}
+
+.form {
+    width: 80%;
+    margin: 40px 200px;
+    /* padding: 20px; */
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.form .left,
+.form .right {
+    width: 50%;
+    justify-content: space-evenly;
+    /* margin-top: 20px; */
+    padding: 20px;
+}
+
+.form .right {
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+}
+
+.form .form-group {
+    /* display: flex;
+    flex-direction: column; */
+    margin-bottom: 20px;
+    width: 80%;
+}
+
+.form .right .whatsapp {
+    width: 60%;
+    /* display: flex; */
+    justify-content: space-between;
+    position: relative;
+}
+
+.form .right .whatsapp span {
+    position: absolute;
+    top: 30px;
+    right: -70px;
+    font-size: 18px;
+}
+
+.form .right .whatsapp input {
+    width: 80%;
+    margin-right: 10px;
+}
+
+.form .right .whatsapp button {
+    width: 15%;
+    height: 40px;
+    position: absolute;
+    left: 85%;
+    top: 23px;
+    background-color: var(--buttonColor);
+    color: var(--white);
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.upload-container {
+    text-align: center;
+    width: 60%;
+    margin-top: 0px;
+}
+
+.upload-box {
+    width: 100%;
+    height: 100px;
+    border: 2px dashed var(--greyLine);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 8px;
+    background-color: var(--white);
+    transition: all 0.3s ease;
+}
+
+.upload-box:hover {
+    background-color: rgba(0, 143, 23, 0.1);
+    border-color: var(--buttonColor);
+}
+
+.upload-icon {
+    width: 40px;
+    height: 40px;
+    color: var(--greyLogo);
+    margin-bottom: 10px;
+}
+
+.upload-box span {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--greyLogo);
+}
+
+.upload-box:focus-within {
+    border: 2px solid var(--buttonColor);
+}
+
+.file-input {
+    display: none;
+}
+
+.file-size-text {
+    font-size: 14px;
+    color: var(--subText);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.form .right .submit-btn {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.form .right .submit-btn button {
+    width: 100%;
+    height: 50px;
+    background-color: var(--buttonColor);
+    color: var(--white);
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+
+/* button {
+    background-color: var(--buttonColor);
+    color: var(--white);
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 1px;
+    
+    
+} */
+
+button:hover {
+    background-color: #007314;
+    /* Darker green on hover */
+    transform: scale(1.05);
+    /* Slightly enlarges button */
+}
+
+button:active {
+    transform: scale(0.95);
+    /* Shrinks button when clicked */
+    background-color: #005f10;
+    /* Even darker green on click */
+}

@@ -24,23 +24,23 @@
         <div class="form">
             <div class="left">
                 <div class="form-group">
-                    <input type="text" id="full_name" name="full_name" required placeholder="Full Name">
+                    <input type="text" id="full_name" name="full_name" placeholder="Full Name">
                     <span class="error"></span>
                 </div>
                 <div class="form-group">
-                    <input type="text" id="user_name" name="user_name" required placeholder="User Name">
+                    <input type="text" id="user_name" name="user_name" placeholder="User Name">
                     <span class="error"></span>
                 </div>
                 <div class="form-group">
-                    <input type="email" id="email" name="email" required placeholder="Email">
+                    <input type="email" id="email" name="email" placeholder="Email">
                     <span class="error"></span>
                 </div>
                 <div class="form-group">
-                    <input type="password" id="password" name="password" required placeholder="Password">
+                    <input type="password" id="password" name="password" placeholder="Password">
                     <span class="error"></span>
                 </div>
                 <div class="form-group">
-                    <input type="password" id="confirm_password" name="confirm_password" required placeholder="Confirm Password">
+                    <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password">
                     <span class="error"></span>
                 </div>
                 <div class="form-group">
@@ -55,8 +55,8 @@
             <div class="right">
                 <div class="form-group whatsapp">
                     <input type="text" id="whatsapp" name="whatsapp" placeholder="Whatsapp">
-                    <button type="button">✔</button>
-                    <span>asdas</span>
+                    <span class="error"></span>
+                    <button type="button" id="whatsapp-button">✔</button>
                 </div>
                 <div class="upload-container">
                     <input type="file" id="fileInput" name="image" accept="image/*" class="file-input" />
@@ -81,7 +81,7 @@
 
     <!-- </div> -->
     <!-- <?php include 'footer.php'; ?> -->
-    <script src="script.js"></script>
+    <script src="/assets/JS/script.js"></script>
 </body>
 
 </html>

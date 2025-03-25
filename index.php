@@ -1,15 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name=" description" content="Registration Form">
     <title>Registration Form</title>
     <link rel="stylesheet" href="assets/styles/style.css">
-    <script defer src="assets/JS/API_Ops.js"></script>
+    <style>
+        .error {
+            font-size: 0.8em;
+            margin-top: 5px;
+            display: block;
+        }
+        .available {
+            color: green;
+        }
+        .taken {
+            color: red;
+        }
+    </style>
 </head>
-
 <body>
     <?php include 'header.php'; ?>
     <div class="container">
@@ -27,8 +37,8 @@
                     <span class="error"></span>
                 </div>
                 <div class="form-group">
-                    <input type="text" id="user_name" name="user_name" placeholder="User Name">
-                    <span class="error"></span>
+                    <input type="text" id="user_name" name="user_name" placeholder="User Name" required>
+                    <span class="error" id="username-error"></span>
                 </div>
                 <div class="form-group">
                     <input type="email" id="email" name="email" placeholder="Email">
@@ -77,13 +87,42 @@
                     <button type="submit" id="submit" name="submit">Submit</button>
                 </div>
             </div>
-
         </div>
-
     </form>
 
-    <!-- <?php include 'footer.php'; ?> -->
-    <script src="assets/JS/script.js"></script>
-</body>
+    <script>
+        const usernameInput = document.getElementById('user_name');
+        const usernameError = document.getElementById('username-error');
+        let typingTimer;
 
+        async function checkUsername() {
+            const username = usernameInput.value.trim();
+            
+            if (username.length < 3) {
+                usernameError.textContent = '';
+                return;
+            }
+
+            try {
+                const response = await fetch(`DB_Ops.php?username=${encodeURIComponent(username)}`);
+                const result = await response.json();
+                usernameError.textContent = result.message;
+                usernameError.className = result.available ? 'available' : 'taken';
+            } catch (error) {
+                usernameError.textContent = 'Error checking username';
+                usernameError.className = 'error';
+                console.error('Error:', error);
+            }
+        }
+
+            usernameInput.addEventListener('input', function() {
+                clearTimeout(typingTimer);
+                usernameError.textContent = 'Checking...';
+                usernameError.className = 'error';
+                typingTimer = setTimeout(checkUsername, 500);
+            });
+
+        usernameInput.addEventListener('blur', checkUsername);
+    </script>
+</body>
 </html>

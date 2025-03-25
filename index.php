@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name=" description" content="Registration Form">
     <title>Registration Form</title>
-    <link rel="stylesheet" href="/assets/styles/style.css">
-    <script defer src="/assets/JS/API_Ops.js"></script>
+    <link rel="stylesheet" href="assets/styles/style.css">
+    <script defer src="assets/JS/API_Ops.js"></script>
 </head>
 
 <body>
@@ -20,7 +20,7 @@
     </div>
     <!-- <div class="container"> -->
 
-    <form action="index.php" method="get">
+    <form action="DB_Ops.php" method="post">
         <div class="form">
             <div class="left">
                 <div class="form-group">
@@ -61,14 +61,18 @@
                 <div class="upload-container">
                     <input type="file" id="fileInput" name="image" accept="image/*" class="file-input" />
                     <label for="fileInput" class="upload-box">
-                        <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v4a2 2 0 002 2h12a2 2 0 002-2v-4m-4-4l-4-4m0 0l-4 4m4-4v12"></path>
-                        </svg>
-                        <span>Upload Additional File</span>
+                        <div class="preview-container">
+                            <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="#008F17">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                            </svg>
+                            <div class="upload-text">
+                                <span class="upload-title">Upload Profile Picture</span>
+                                <span class="upload-subtitle">Click to browse or drag & drop</span>
+                            </div>
+                        </div>
                     </label>
-                    <p class="file-size-text">Attach file. File size of your documents should not exceed 10MB</p>
+                    <p class="file-size-text">JPG, PNG (Max. 10MB)</p>
                 </div>
-
 
                 <div class="submit-btn">
                     <button type="submit" id="submit" name="submit">Submit</button>
@@ -81,7 +85,7 @@
 
     <!-- </div> -->
     <!-- <?php include 'footer.php'; ?> -->
-    <script src="/assets/JS/script.js"></script>
+    <script src="assets/JS/script.js"></script>
 </body>
 
 </html>

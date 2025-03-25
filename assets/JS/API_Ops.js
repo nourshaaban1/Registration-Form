@@ -1,8 +1,8 @@
 const whatsappButton = document.getElementById("whatsapp-button");
 
-whatsappButton.addEventListener("click", () => {
+whatsappButton.addEventListener("click", (e) => {
   let number = whatsapp.value.trim();
-  number = "2" + number; // Add Egypt country code (20)
+  number = "2" + number;
 
   const data = JSON.stringify({
     phone_number: number,

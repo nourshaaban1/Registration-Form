@@ -11,9 +11,8 @@ const address = document.getElementById("address");
 const fileInput = document.getElementById("fileInput");
 document.querySelectorAll(".error").forEach((el) => (el.textContent = ""));
 
-form.addEventListener("submit", function (event) {
+form.addEventListener("submit", (event) => {
   let isValid = true;
-
   // Reset all error messages
 
   // Full Name Validation
@@ -26,6 +25,13 @@ form.addEventListener("submit", function (event) {
   if (userName.value.trim() === "") {
     showError(userName, "User Name is required");
     isValid = false;
+  } else if (!/^[a-zA-Z0-9_]{3,20}$/.test(userName.value)) {
+    showError(
+      userName,
+      "Username must be 3-20 characters (letters, numbers, underscore)"
+    );
+    isValid = false;
+  } else {
   }
 
   // Email Validation
@@ -47,6 +53,9 @@ form.addEventListener("submit", function (event) {
   // Confirm Password Validation
   if (password.value !== confirmPassword.value) {
     showError(confirmPassword, "Passwords do not match");
+    isValid = false;
+  } else if (confirmPassword.value.trim() === "") {
+    showError(confirmPassword, "Confirm Password is required");
     isValid = false;
   }
 

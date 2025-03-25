@@ -18,7 +18,6 @@
             <p>Please fill out the form below to get into our hilarious community.</p>
         </div>
     </div>
-    <!-- <div class="container"> -->
 
     <form action="DB_Ops.php" method="post">
         <div class="form">
@@ -36,11 +35,11 @@
                     <span class="error"></span>
                 </div>
                 <div class="form-group">
-                    <input type="password" id="password" name="password" placeholder="Password">
+                    <input type="text" id="password" name="password" placeholder="Password">
                     <span class="error"></span>
                 </div>
                 <div class="form-group">
-                    <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password">
+                    <input type="text" id="confirm_password" name="confirm_password" placeholder="Confirm Password">
                     <span class="error"></span>
                 </div>
                 <div class="form-group">
@@ -83,7 +82,6 @@
 
     </form>
 
-    <!-- </div> -->
     <!-- <?php include 'footer.php'; ?> -->
     <script src="assets/JS/script.js"></script>
 </body>

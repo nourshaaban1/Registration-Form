@@ -31,7 +31,6 @@ form.addEventListener("submit", (event) => {
       "Username must be 3-20 characters (letters, numbers, underscore)"
     );
     isValid = false;
-  } else {
   }
 
   // Email Validation

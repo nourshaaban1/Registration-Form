@@ -34,7 +34,7 @@
         </div>
     </div>
 
-    <form action="DB_Ops.php" method="post">
+    <form action="DB_Ops.php" method="post" enctype="multipart/form-data">
         <div class="form">
             <div class="left">
                 <div class="form-group">

@@ -3,7 +3,8 @@ header("Content-Type: application/json");
 $servername = "localhost";
 $admin_username = "root";
 $admin_password = "";
-$dbname = "ur_wp";
+#$dbname = "ur_wp";
+$dbname = "registration_db";
 
 $errors = [];
 $success = false;
@@ -43,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { //form submit
     $address = trim($_POST['address'] ?? '');
     $phone = trim($_POST['phone'] ?? '');
     $whatsapp = trim($_POST['whatsapp'] ?? '');
-    $image = $_POST['image'] ?? '';
+    $image = $_FILES['image']['name'] ?? null;
 
     if (empty($username)) { //validation
         $errors['username'] = "Username is required";
@@ -66,6 +67,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { //form submit
     if (empty($full_name)) {
         $errors['full_name'] = "Full name is required";
     }
+    
+    if (!$image) {
+        $errors['image'] = "Image upload failed or no file selected";
+    }
 
     try {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -81,6 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { //form submit
 
         if ($stmt->execute()) {
             $success = true;
+            move_uploaded_file($_FILES["image"]["tmp_name"],"uploads/".$_FILES['image']['name']);
             echo json_encode(['status' => 'success', 'message' => 'Registration successful']);
         } else {
             throw new Exception("Insert failed: " . $stmt->error);

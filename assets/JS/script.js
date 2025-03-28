@@ -7,14 +7,12 @@ const confirmPassword = document.getElementById("confirm_password");
 const phone = document.getElementById("phone");
 const whatsapp = document.getElementById("whatsapp");
 const address = document.getElementById("address");
-
 const fileInput = document.getElementById("fileInput");
-document.querySelectorAll(".error").forEach((el) => (el.textContent = ""));
+let isValid = true;
 
-form.addEventListener("submit", (event) => {
-  let isValid = true;
+form.addEventListener("submit", async (event) => {
   // Reset all error messages
-
+  document.querySelectorAll(".error").forEach((el) => (el.textContent = ""));
   // Full Name Validation
   if (fullName.value.trim() === "") {
     showError(fullName, "Full Name is required");
@@ -97,3 +95,38 @@ function validateEmail(email) {
   const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   return re.test(email);
 }
+
+const usernameError = document.getElementById("username-error");
+let typingTimerUsername;
+
+async function checkUsername() {
+  const username = userName.value.trim();
+
+  if (username.length < 3) {
+    usernameError.textContent = "";
+    return;
+  }
+
+  try {
+    const response = await fetch(
+      `DB_Ops.php?username=${encodeURIComponent(username)}`
+    );
+    const result = await response.json();
+    usernameError.textContent = result.message;
+    usernameError.className = result.available ? "available" : "taken";
+    isValid = result.available;
+  } catch (error) {
+    usernameError.textContent = "Error checking username";
+    usernameError.className = "error";
+    console.error("Error:", error);
+  }
+}
+
+userName.addEventListener("keyup", function () {
+  clearTimeout(typingTimerUsername);
+  usernameError.textContent = "Checking...";
+  usernameError.className = "error";
+  typingTimerUsername = setTimeout(checkUsername, 500);
+});
+
+userName.addEventListener("blur", checkUsername);

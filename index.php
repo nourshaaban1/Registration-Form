@@ -1,25 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name=" description" content="Registration Form">
     <title>Registration Form</title>
     <link rel="stylesheet" href="assets/styles/style.css">
+    <script src="assets/JS/API_Ops.js" defer></script>
+    <script src="assets/JS/script.js" defer></script>
     <style>
         .error {
-            font-size: 0.8em;
-            margin-top: 5px;
+            font-size: 14px;
             display: block;
         }
+
         .available {
-            color: green;
+            color: #008F17;
         }
+
         .taken {
-            color: red;
+            color: #D40D0D;
         }
     </style>
 </head>
+
 <body>
     <?php include 'header.php'; ?>
     <div class="container">
@@ -37,12 +42,12 @@
                     <span class="error"></span>
                 </div>
                 <div class="form-group">
-                    <input type="text" id="user_name" name="user_name" placeholder="User Name" required>
+                    <input type="text" id="user_name" name="user_name" placeholder="User Name">
                     <span class="error" id="username-error"></span>
                 </div>
                 <div class="form-group">
                     <input type="email" id="email" name="email" placeholder="Email">
-                    <span class="error"></span>
+                    <span class="error" id="email-error"></span>
                 </div>
                 <div class="form-group">
                     <input type="text" id="password" name="password" placeholder="Password">
@@ -68,8 +73,8 @@
                     <button type="button" id="whatsapp-button">✔</button>
                 </div>
                 <div class="upload-container">
-                    <input type="file" id="fileInput" name="image" accept="image/*" class="file-input" />
-                    <label for="fileInput" class="upload-box">
+                    <input type="file" id="fileInput" name="image" accept="image/*" />
+                    <label for="fileInput">
                         <div class="preview-container">
                             <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="#008F17">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
@@ -91,38 +96,8 @@
     </form>
 
     <script>
-        const usernameInput = document.getElementById('user_name');
-        const usernameError = document.getElementById('username-error');
-        let typingTimer;
 
-        async function checkUsername() {
-            const username = usernameInput.value.trim();
-            
-            if (username.length < 3) {
-                usernameError.textContent = '';
-                return;
-            }
-
-            try {
-                const response = await fetch(`DB_Ops.php?username=${encodeURIComponent(username)}`);
-                const result = await response.json();
-                usernameError.textContent = result.message;
-                usernameError.className = result.available ? 'available' : 'taken';
-            } catch (error) {
-                usernameError.textContent = 'Error checking username';
-                usernameError.className = 'error';
-                console.error('Error:', error);
-            }
-        }
-
-            usernameInput.addEventListener('input', function() {
-                clearTimeout(typingTimer);
-                usernameError.textContent = 'Checking...';
-                usernameError.className = 'error';
-                typingTimer = setTimeout(checkUsername, 500);
-            });
-
-        usernameInput.addEventListener('blur', checkUsername);
     </script>
 </body>
+
 </html>

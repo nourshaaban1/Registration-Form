@@ -10,24 +10,25 @@ $success = false;
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['username'])) { //username check ajax request
     $username = trim($_GET['username']);
-    
+
     $conn = new mysqli($servername, $admin_username, $admin_password, $dbname);
-    
+
     $stmt = $conn->prepare("SELECT id FROM users WHERE user_name = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $stmt->store_result();
-    
+
     if ($stmt->num_rows > 0) {
         echo json_encode(['available' => false, 'message' => 'Username already taken']);
     } else {
         echo json_encode(['available' => true, 'message' => 'Username available']);
     }
-    
+
     $stmt->close();
     $conn->close();
     exit();
 }
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') { //form submit
     $conn = new mysqli($servername, $admin_username, $admin_password, $dbname);
@@ -97,4 +98,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { //form submit
     }
     exit();
 }
-?>

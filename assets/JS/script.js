@@ -8,11 +8,23 @@ const phone = document.getElementById("phone");
 const whatsapp = document.getElementById("whatsapp");
 const address = document.getElementById("address");
 const fileInput = document.getElementById("fileInput");
+const usernameError = document.getElementById("username-error");
+let typingTimerUsername;
 let isValid = true;
 
+// Listen for file input changes to remove error if an image is selected
+fileInput.addEventListener("change", function () {
+  if (fileInput.files.length > 0) {
+    removeError(fileInput);
+  }
+});
+
 form.addEventListener("submit", async (event) => {
+  isValid = true; // Reset validation state
+
   // Reset all error messages
   document.querySelectorAll(".error").forEach((el) => (el.textContent = ""));
+
   // Full Name Validation
   if (fullName.value.trim() === "") {
     showError(fullName, "Full Name is required");
@@ -56,6 +68,7 @@ form.addEventListener("submit", async (event) => {
     isValid = false;
   }
 
+  // Phone, WhatsApp, and Address Validation
   if (phone.value.trim() === "") {
     showError(phone, "Phone number is required");
     isValid = false;
@@ -68,10 +81,14 @@ form.addEventListener("submit", async (event) => {
     showError(whatsapp, "WhatsApp number is required");
     isValid = false;
   }
+
   // File Upload Validation
   if (fileInput.files.length === 0) {
     showError(fileInput, "Image upload is required");
     isValid = false;
+  } else {
+    removeError(fileInput);
+    isValid = true;
   }
 
   // Prevent form submission if validation fails
@@ -82,11 +99,22 @@ form.addEventListener("submit", async (event) => {
 
 // Show error message
 function showError(input, message) {
-  const errorSpan = input.nextElementSibling;
+  let errorSpan = input.nextElementSibling;
   if (errorSpan) {
     errorSpan.textContent = message;
     errorSpan.style.color = "#D40D0D";
     errorSpan.style.fontSize = "14px";
+  }
+  if (message === "Username available") {
+    errorSpan.style.color = "#008F17";
+  }
+}
+
+// Remove error message
+function removeError(input) {
+  let errorSpan = input.nextElementSibling;
+  if (errorSpan) {
+    errorSpan.textContent = "";
   }
 }
 
@@ -96,9 +124,7 @@ function validateEmail(email) {
   return re.test(email);
 }
 
-const usernameError = document.getElementById("username-error");
-let typingTimerUsername;
-
+// Username availability check
 async function checkUsername() {
   const username = userName.value.trim();
 

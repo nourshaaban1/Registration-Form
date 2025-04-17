@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { //form submit
     if (empty($full_name)) {
         $errors['full_name'] = "Full name is required";
     }
-    
+
     if (!$image) {
         $errors['image'] = "Image upload failed or no file selected";
     }
@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { //form submit
 
         if ($stmt->execute()) {
             $success = true;
-            move_uploaded_file($_FILES["image"]["tmp_name"],"uploads/".$_FILES['image']['name']);
+            move_uploaded_file($_FILES["image"]["tmp_name"], "uploads/" . $_FILES['image']['name']);
             echo json_encode(['status' => 'success', 'message' => 'Registration successful']);
         } else {
             throw new Exception("Insert failed: " . $stmt->error);

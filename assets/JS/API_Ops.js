@@ -17,12 +17,10 @@ whatsappButton.addEventListener("click", (e) => {
         whatsapp.nextElementSibling.textContent = `✅ Your WhatsApp number +${number} is valid`;
         whatsapp.nextElementSibling.style.color = "#008F17";
         whatsapp.nextElementSibling.style.fontSize = "14px";
-        isValid = true;
       } else if (responseData.status && responseData.status === "invalid") {
         whatsapp.nextElementSibling.textContent = `❌ Your WhatsApp number +${number} is invalid!`;
         whatsapp.nextElementSibling.style.color = "D40D0D";
         whatsapp.nextElementSibling.style.fontSize = "14px";
-        isValid = false;
       } else {
         console.log(responseData.message);
       }
